@@ -27,8 +27,7 @@ resource "aws_ecs_cluster" "grafana" {
 # Defining the task
 resource "aws_ecs_task_definition" "deploy_task" {
   family                   = "grafana-task"
-  container_definitions    = <<DEFINITION
-  [
+  container_definitions    = jsonencode([
     {
       "name": "grafana-task",
       "image": "grafana/grafana",
@@ -42,8 +41,7 @@ resource "aws_ecs_task_definition" "deploy_task" {
       "memory": 512,
       "cpu": 256
     }
-  ]
-  DEFINITION
+  ])
   requires_compatibilities = ["FARGATE"] 
   network_mode             = "awsvpc"   
   memory                   = 512         
@@ -107,7 +105,7 @@ resource "aws_lb_target_group" "target_group" {
   port        = 80
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = "${aws_default_vpc.default_vpc.id}" # Referencing the default VPC
+  vpc_id      = "${aws_default_vpc.default_vpc.id}"
 }
 
 resource "aws_lb_listener" "listener" {
