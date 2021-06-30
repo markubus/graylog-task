@@ -6,6 +6,12 @@ I look forward to any input and comments regarding what I've done.
 
 Markus Weisshaar
 
+## Assumptions
+
+AWS CLI must be installed and configured to interact with an account. The VMs and resource provisioned will be under the free tier.
+
+Terraform also must be installed. The version used is below. An app like [tfswitch](https://tfswitch.warrensbox.com/) can help to mitigate having multiple running versions.
+
 ## Usage
 
 All that is required to get this to run is a `terraform init` and then `terraform apply`
